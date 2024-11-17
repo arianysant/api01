@@ -1,3 +1,38 @@
+<?php
+session_start();
+include('../config_serv/conexao.php');
+
+if (!isset($_SESSION['id_crianca'])) {
+    header("Location: ../api/erro404.php");
+    exit();
+}
+
+// Consulta os dados do perfil no banco
+$id = $_SESSION['id_crianca']; // Assumindo que $_SESSION['id_crianca'] é o ID da criança
+$query = "SELECT nome, idade, email, nivel_de_suporte, info FROM crianca WHERE id_crianca = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Preenche as variáveis com os dados
+if ($result->num_rows > 0) {
+    $perfil = $result->fetch_assoc();
+    $nome = $perfil['nome'];
+    $idade = $perfil['idade'];
+    $email = $perfil['email'];
+    $suporte = $perfil['nivel_de_suporte'];
+    $info = $perfil['info'];
+} else {
+    // Caso não encontre o perfil
+    $nome = $idade = $email = $suporte = $info = "Não disponível";
+}
+
+$stmt->close();
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -187,30 +222,29 @@
             <section id="perfil-visualizar">
                 <div id="form-perfil">
                     <div class="seta">
-                        <a href="crianca.html" class="">
+                        <a href="crianca.php" class="">
                             <i class="fa-solid fa-arrow-left"></i>
                         </a>
                    </div>
                     <!-- Imagem do Avatar -->
-                    <img src="../img/ia (1).png" alt="Avatar do Usuário" id="user-avatar">
-                    
-                    <!-- Título para dados do perfil -->
+                   <img src="../img/ia (1).png" alt="Avatar do Usuário" id="user-avatar">
                     <div id="dados-perfil">Dados do seu Perfil</div>
-                    
+
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" readonly>
+                    <input type="text" id="nome" name="nome" readonly value="<?php echo htmlspecialchars($nome); ?>">
 
                     <label for="idade">Idade:</label>
-                    <input type="text" id="idade" name="idade" readonly>
+                    <input type="text" id="idade" name="idade" readonly value="<?php echo htmlspecialchars($idade); ?>">
                     
                     <label for="email">Email do responsável:</label>
-                    <input type="email" id="email" name="email" readonly>
+                    <input type="email" id="email" name="email" readonly value="<?php echo htmlspecialchars($email); ?>">
                     
                     <label for="suporte">Nível de Suporte:</label>
-                    <input type="text" id="suporte" name="suporte" readonly>
+                    <input type="text" id="suporte" name="suporte" readonly value="<?php echo htmlspecialchars($suporte); ?>">
 
                     <label for="info">Informações Extras:</label>
-                    <input type="text" id="extra-info" name="info" readonly>
+                    <input type="text" id="info" name="info" readonly value="<?php echo htmlspecialchars($info); ?>">
+                </div>
 
                 </div>
             </section>
@@ -218,28 +252,28 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const formPerfil = document.getElementById("form-perfil");
+        // document.addEventListener("DOMContentLoaded", () => {
+        //     const formPerfil = document.getElementById("form-perfil");
 
-            // Carregar dados do usuário ao abrir a página
-            function carregarDadosUsuario() {
-                const usuario = {
-                    nome: "João Silva",
-                    idade: "5",
-                    email: "joao.silva@exemplo.com",
-                    suporte: "Nível 2",
-                    info: "Nenhuma informação extra"
-                };
+        //     // Carregar dados do usuário ao abrir a página
+        //     function carregarDadosUsuario() {
+        //         const usuario = {
+        //             nome: "João Silva",
+        //             idade: "5",
+        //             email: "joao.silva@exemplo.com",
+        //             suporte: "Nível 2",
+        //             info: "Nenhuma informação extra"
+        //         };
                 
-                document.getElementById("nome").value = usuario.nome;
-                document.getElementById("idade").value = usuario.idade;
-                document.getElementById("email").value = usuario.email;
-                document.getElementById("suporte").value = usuario.suporte;
-                document.getElementById("extra-info").value = usuario.info;
-            }
+        //         document.getElementById("nome").value = usuario.nome;
+        //         document.getElementById("idade").value = usuario.idade;
+        //         document.getElementById("email").value = usuario.email;
+        //         document.getElementById("suporte").value = usuario.suporte;
+        //         document.getElementById("extra-info").value = usuario.info;
+        //     }
 
-            carregarDadosUsuario();
-        });
+        //     carregarDadosUsuario();
+        // });
     </script>
 </body>
 </html>

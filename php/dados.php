@@ -198,26 +198,34 @@
 
         <div id="msg" style="color:red;"></div>
 
-        <form id="formCadastro">
+     <form id="formCadastro" method="POST" action="../api/cadastrar_crianca.php" >
+        <input type="hidden" name="acao" value="cadastro">
             <div class="input-group">
                 <input type="text" name="nome" placeholder="Nome Completo" required>
             </div>
-            <div class="input-group">
-                <input type="email" name="email" placeholder="Email do responsável" required>
-            </div>
+            
             <div class="input-group">
                 <input type="text" name="idade" placeholder="idade" required>
             </div>
 
             <div class="input-group">
-                <input type="text" name="suporte" placeholder="Nivel de suporte" required>
+                <input type="text" name="nivel_de_suporte" placeholder="Nivel de suporte" required>
             </div>
 
             <div class="input-group">
-                <input type="text" name="info-extras" placeholder="Informações extras" required>
+                <input type="text" name="info" placeholder="Informações extras" required>
             </div>
+
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email do responsável" required>
+            </div>
+
+             <div class="input-group">
+                <input type="password" name="senha" placeholder="Senha" required>
+            </div>
+
             <button class="button" type="submit">Avançar</button>
-        </form>
+        </form> 
 
     
 </div>

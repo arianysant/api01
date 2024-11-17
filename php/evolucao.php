@@ -228,7 +228,7 @@
 </head>
 
 <header>
-    <a href="pais.html">
+    <a href="pais.php">
         <i class="fa-solid fa-arrow-left"></i>
     </a>
     <img src="../img/autily azul claro.png" alt="Logo" class="logo">      

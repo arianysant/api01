@@ -606,7 +606,7 @@ if (!isset($_SESSION['id_crianca'])) {
         <div class="menu-container">
             <i class="fas fa-bars" id="menu-icon" style="font-size: 30px; color: white; cursor: pointer;"></i>
             <div class="dropdown" id="dropdown-menu">
-                <a href="perfilC.html" onclick="showPage('perfil')">Perfil</a>
+                <a href="perfilC.php" onclick="showPage('perfil')">Perfil</a>
                 <a href="#" onclick="showPage('ajuda')">Ajuda</a>
                 <!-- <a href="#" onclick="showAlert()">Ir para área dos pais</a> -->
                  <a href="../api/logout.php">Ir para área dos pais</a>
@@ -645,7 +645,7 @@ if (!isset($_SESSION['id_crianca'])) {
                 </div>
 
                 <div class="text-section">
-                    <h1>Bem-vindo amigo!</h1>
+                <h1>Bem-vindo ao seu perfil, <?php echo $_SESSION['nome']; ?></h1> <!-- Teste se o ID da sessão está correto -->
                     <p>Esta é a área dedicada às crianças. Aqui você pode interagir com jogos, rotinas e muito mais!</p>
                 </div>
 
@@ -668,7 +668,7 @@ if (!isset($_SESSION['id_crianca'])) {
                 </div>
             </div>
 
-            <div id="page-content">
+            <!-- <div id="page-content">
                 <span class="close" onclick="closeModal()">&times;</span>
                 <div id="content">
                     <h2>Perfil</h2>
@@ -709,14 +709,14 @@ if (!isset($_SESSION['id_crianca'])) {
                             </div>
                             <button class="add-info-btn" onclick="addExtraInfo()">+ Adicionar</button>
 
-                            <ul id="info-list"></ul> <!-- Lista para informações adicionais -->
+                            <ul id="info-list"></ul> Lista para informações adicionais 
                         </div>
                         <div class="form-group">
                             <button type="submit">Salvar</button>
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
         </main>
 
         <footer>

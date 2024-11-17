@@ -200,6 +200,6 @@
                 <input type="password" name="senha" placeholder="Senha" required>
             </div>
             <button class="button" type="submit">Criar Conta</button>
-        </form>
+        </form> 
     </div>
 </div>

@@ -77,7 +77,7 @@ if (!isset($_SESSION['id'])) {
 
                     <h1>Cadastrar Criança</h1>
                     <p>Cadastrar conta de sua Criança</p>
-                    <a href="cadastroC.php">
+                    <a href="dados.php">
                         <button class="botao">Adicionar</button>
                     </a>
                 </div>
@@ -95,7 +95,7 @@ if (!isset($_SESSION['id'])) {
                     <img src="../img/evolução.png" alt="Imagem de pintura" class="img-nova">
                     <h1>Evolução</h1>
                     <p>Veja a evolução do seu pequeno!</p>
-                    <a href="evolucao.html">
+                    <a href="evolucao.php">
                         <button class="botao">Ver</button>
                     </a>
                 </div>
@@ -264,69 +264,69 @@ if (!isset($_SESSION['id'])) {
 
             document.getElementById('content').innerHTML = content;
 
-            // Adiciona a funcionalidade de salvar para o formulário
-            if (page === 'perfil') {
-                document.getElementById('perfil-form').onsubmit = function(event) {
-                    event.preventDefault();
+        // Adiciona a funcionalidade de salvar para o formulário
+             if (page === 'perfil') {
+        document.getElementById('perfil-form').onsubmit = function(event) {
+        event.preventDefault();
                     alert('Perfil salvo com sucesso!');
                     closeModal();
-                };
-            }
+        };
+           }
 
             document.getElementById('page-content').style.display = 'block';
-        }
+         }
 
-        function closeModal() {
-            document.getElementById('page-content').style.display = 'none';
-        }
+        // function closeModal() {
+        //     document.getElementById('page-content').style.display = 'none';
+        // }
 
-        const infoList = [];
+        // const infoList = [];
 
-        function addExtraInfo() {
-            const extraInfoInput = document.getElementById('extra-info');
-            const info = extraInfoInput.value.trim();
+        // function addExtraInfo() {
+        //     const extraInfoInput = document.getElementById('extra-info');
+        //     const info = extraInfoInput.value.trim();
 
-            if (info) {
-                infoList.push(info);
-                extraInfoInput.value = ''; // Limpa o campo de entrada
-                updateInfoList(); // Atualiza a lista exibida
-            }
-        }
+        //     if (info) {
+        //         infoList.push(info);
+        //         extraInfoInput.value = ''; // Limpa o campo de entrada
+        //         updateInfoList(); // Atualiza a lista exibida
+        //     }
+        // }
 
-        function deleteInfo(index) {
-            infoList.splice(index, 1);
-            updateInfoList(); // Atualiza a lista exibida
-        }
+        // function deleteInfo(index) {
+        //     infoList.splice(index, 1);
+        //     updateInfoList(); // Atualiza a lista exibida
+        // }
 
-        function editInfo(index) {
-            const newInfo = prompt('Edite a informação:', infoList[index]);
-            if (newInfo !== null) {
-                infoList[index] = newInfo;
-                updateInfoList(); // Atualiza a lista exibida
-            }
-        }
+        // function editInfo(index) {
+        //     const newInfo = prompt('Edite a informação:', infoList[index]);
+        //     if (newInfo !== null) {
+        //         infoList[index] = newInfo;
+        //         updateInfoList(); // Atualiza a lista exibida
+        //     }
+        // }
 
-        function updateInfoList() {
-            const infoListElement = document.getElementById('info-list');
-            infoListElement.innerHTML = ''; // Limpa a lista antes de re-popular
+        // function updateInfoList() {
+        //     const infoListElement = document.getElementById('info-list');
+        //     infoListElement.innerHTML = ''; // Limpa a lista antes de re-popular
 
-            infoList.forEach((info, index) => {
-                const li = document.createElement('li');
-                li.textContent = info;
+        //     infoList.forEach((info, index) => {
+        //         const li = document.createElement('li');
+        //         li.textContent = info;
 
-                const editButton = document.createElement('button');
-                editButton.textContent = '✏️ Editar';
-                editButton.onclick = () => editInfo(index);
+        //         const editButton = document.createElement('button');
+        //         editButton.textContent = '✏️ Editar';
+        //         editButton.onclick = () => editInfo(index);
 
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = '🗑️ Deletar';
-                deleteButton.onclick = () => deleteInfo(index);
+        //         const deleteButton = document.createElement('button');
+        //         deleteButton.textContent = '🗑️ Deletar';
+        //         deleteButton.onclick = () => deleteInfo(index);
 
-                li.appendChild(editButton);
-                li.appendChild(deleteButton);
-                infoListElement.appendChild(li);
-            });
-        }
+        //         li.appendChild(editButton);
+        //         li.appendChild(deleteButton);
+        //         infoListElement.appendChild(li);
+        //     });
+        // }
 
         const modal = document.getElementById("modal");
         const btn = document.getElementById("openModalBtn");

@@ -1,15 +1,32 @@
 <?php
 session_start(); // Inicia a sessão
+include('../config_serv/conexao.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 // Verifica se o usuário está logado
 if (!isset($_SESSION['id'])) {
     // Redireciona o usuário para a página de login caso não esteja logado
-    header("Location: ../api/erro404.php"); // Substitua "login.php" pela sua página de login
+    header("Location: ../api/erro404.php"); // 
     exit();
 }
-?><!DOCTYPE html>
+
+$responsavel_id = $_SESSION['id'];
+$conn->set_charset("utf8mb4");
+
+// Consulta para obter os dados da criança
+$stmt = $conn->prepare("SELECT nome, idade, email, nivel_de_suporte, info FROM crianca WHERE responsavel_id = ?");
+$stmt->bind_param("i", $responsavel_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$crianca = $result->fetch_assoc();
+
+$stmt->close();
+$conn->close();
+?>
+
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -249,32 +266,30 @@ if (!isset($_SESSION['id'])) {
         <main>
             <!-- Formulário para editar informações -->
             <section id="perfil-editar">
+                <!-- Formulário para editar informações -->
                 <form id="form-perfil" action="../api/perfil.php" method="POST">
                     <div class="seta">
-                        <a href="pais.html">
+                        <a href="../php/pais.php">
                             <i class="fa-solid fa-arrow-left"></i>
                         </a>
                     </div>
-                    <!-- Imagem do Avatar dentro do formulário -->
                     <img src="../img/ia (1).png" alt="Avatar do Usuário" id="user-avatar">
-
-                    <!-- Título genérico para dados do perfil -->
                     <div id="dados-perfil">Dados do Perfil da Criança</div>
 
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome">
+                    <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($crianca['nome'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 
                     <label for="idade">Idade:</label>
-                    <input type="text" id="idade" name="idade">
+                    <input type="text" id="idade" name="idade" value="<?php echo htmlspecialchars($crianca['idade'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email">
+                    <label for="email">Email Responsável:</label>
+                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($crianca['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 
                     <label for="suporte">Nível de Suporte:</label>
-                    <input type="text" id="suporte" name="suporte">
+                    <input type="text" id="suporte" name="suporte" value="<?php echo htmlspecialchars($crianca['nivel_de_suporte'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 
-                    <label for="informacoesExtras">Informações:</label>
-                    <input type="text" id="informacoesExtras" name="informacoesExtras">
+                    <label for="info">Informações:</label>
+                    <input type="text" id="info" name="info" value="<?php echo htmlspecialchars($crianca['info'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 
                     <button type="submit">Salvar Alterações</button>
                 </form>

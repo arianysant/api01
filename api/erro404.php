@@ -8,7 +8,7 @@ header("Refresh: 5; url=../html/index.html");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erro 404 - Página não encontrada</title>
+    <title>Você não pode acessar essa página!</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,7 +37,7 @@ header("Refresh: 5; url=../html/index.html");
 <body>
 
     <h1>Erro 404</h1>
-    <p>A página que você está tentando acessar não foi encontrada.</p>
+    <p>Você não pode acessar essa página!</p>
     <p class="redirect">Você será redirecionado para a tela de login em <span id="countdown">5</span> segundos...</p>
 
     <script>

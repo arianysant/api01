@@ -14,7 +14,9 @@ $id_usuario = $_SESSION['id'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acao']) && $_POST['acao'] == 'cadastro') {
     $nome = trim($_POST['nome']);
     $idade = (int)$_POST['idade'];
+    $suporte = (int)$_POST['nivel_de_suporte'];
     $email = trim($_POST['email']);
+    $info = trim($_POST['info']);
     $senha = $_POST['senha'];
 
     // Real escape para prevenir SQL injection
@@ -23,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acao']) && $_POST['aca
     $senha = password_hash($senha, PASSWORD_DEFAULT);
 
     // Validação de campos obrigatórios
-    if (empty($nome) || empty($idade) || empty($email) || empty($senha)) {
+    if (empty($nome) || empty($idade) || empty($suporte) || empty($email) || empty($senha)) {
         echo "Todos os campos são obrigatórios!";
         exit();
     }
@@ -44,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['acao']) && $_POST['aca
     }
 
     // Inserção do registro na tabela 'crianca' com a referência ao 'responsavel_id' que vem da sessão
-    $query = "INSERT INTO crianca (nome, idade, email, senha, responsavel_id) 
-              VALUES ('$nome', '$idade', '$email', '$senha', '$id_usuario')";
+    $query = "INSERT INTO crianca (nome, idade, nivel_de_suporte, email, senha, info, responsavel_id) 
+              VALUES ('$nome', '$idade', '$suporte', '$email', '$senha', '$info', '$id_usuario')";
 
     if ($conn->query($query) === TRUE) {
         echo "Conta da criança criada com sucesso!";

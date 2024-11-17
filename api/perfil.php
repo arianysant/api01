@@ -9,7 +9,7 @@ if (!isset($_SESSION['id'])) {
 
 $conn->set_charset("utf8mb4");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['idade'], $_POST['email'], $_POST['suporte'], $_POST['informacoesExtras'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['idade'], $_POST['email'], $_POST['suporte'], $_POST['info'])) {
 
     $responsavel_id = $_SESSION['id'];
 
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['idade
     $idade = $_POST['idade'];
     $email = $_POST['email'];
     $suporte = $_POST['suporte'];
-    $informacoesExtras = $_POST['informacoesExtras'];  
+    $info = $_POST['info'];  
     $stmt = $conn->prepare("SELECT id_crianca FROM crianca WHERE responsavel_id = ? LIMIT 1");
     $stmt->bind_param("i", $responsavel_id);
     $stmt->execute();
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['idade
         $crianca = $result->fetch_assoc();
         $id_crianca = $crianca['id_crianca'];
         $stmt = $conn->prepare("UPDATE crianca SET nome = ?, idade = ?, nivel_de_suporte = ?, email = ?, info = ? WHERE id_crianca = ? AND responsavel_id = ?");
-        $stmt->bind_param("sisssii", $nome, $idade, $suporte, $email, $informacoesExtras, $id_crianca, $responsavel_id);
+        $stmt->bind_param("sisssii", $nome, $idade, $suporte, $email, $info, $id_crianca, $responsavel_id);
 
 
         if ($stmt->execute()) {

@@ -19,11 +19,32 @@ if (!isset($_SESSION['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../chatbot/style.css">
     <title>Área Pais</title>
 
 </head>
 
 <body>
+
+
+    <!-- Botão Flutuante -->
+    <button id="floatButton" class="float-button">
+        <img src="../chatbot/testeia.png.png" alt="Assistente" class="float-image">
+    </button>
+
+    <!-- Janela do Chat -->
+    <div id="chatbox" class="chatbox hidden">
+        <div id="chat-header" class="chat-header">
+            <img src="../chatbot/50px2.png" alt="">
+            <span>MIA</span>
+            <button id="closeButton" class="close-button">&times;</button>
+        </div>
+        <div id="messages" class="messages"></div>
+        <div id="options" class="options"></div>
+    </div>
+
+
+
     <header>
         <img src="../img/autily azul claro.png" alt="Logo" class="logo">
         <div class="menu-container">
@@ -276,57 +297,6 @@ if (!isset($_SESSION['id'])) {
             document.getElementById('page-content').style.display = 'block';
          }
 
-        // function closeModal() {
-        //     document.getElementById('page-content').style.display = 'none';
-        // }
-
-        // const infoList = [];
-
-        // function addExtraInfo() {
-        //     const extraInfoInput = document.getElementById('extra-info');
-        //     const info = extraInfoInput.value.trim();
-
-        //     if (info) {
-        //         infoList.push(info);
-        //         extraInfoInput.value = ''; // Limpa o campo de entrada
-        //         updateInfoList(); // Atualiza a lista exibida
-        //     }
-        // }
-
-        // function deleteInfo(index) {
-        //     infoList.splice(index, 1);
-        //     updateInfoList(); // Atualiza a lista exibida
-        // }
-
-        // function editInfo(index) {
-        //     const newInfo = prompt('Edite a informação:', infoList[index]);
-        //     if (newInfo !== null) {
-        //         infoList[index] = newInfo;
-        //         updateInfoList(); // Atualiza a lista exibida
-        //     }
-        // }
-
-        // function updateInfoList() {
-        //     const infoListElement = document.getElementById('info-list');
-        //     infoListElement.innerHTML = ''; // Limpa a lista antes de re-popular
-
-        //     infoList.forEach((info, index) => {
-        //         const li = document.createElement('li');
-        //         li.textContent = info;
-
-        //         const editButton = document.createElement('button');
-        //         editButton.textContent = '✏️ Editar';
-        //         editButton.onclick = () => editInfo(index);
-
-        //         const deleteButton = document.createElement('button');
-        //         deleteButton.textContent = '🗑️ Deletar';
-        //         deleteButton.onclick = () => deleteInfo(index);
-
-        //         li.appendChild(editButton);
-        //         li.appendChild(deleteButton);
-        //         infoListElement.appendChild(li);
-        //     });
-        // }
 
         const modal = document.getElementById("modal");
         const btn = document.getElementById("openModalBtn");
@@ -348,6 +318,8 @@ if (!isset($_SESSION['id'])) {
             }
         }
     </script>
-</body>
 
+ 
+</body>
+<script src="../chatbot/scripts.js"></script>
 </html>

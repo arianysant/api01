@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../chatbot/style.css">
     <title>Area Criança</title>
 
     <style>
@@ -237,6 +238,23 @@
 </header>
 
 <body>
+
+ <!-- Botão Flutuante -->
+ <button id="floatButton" class="float-button">
+        <img src="../chatbot/testeia.png.png" alt="Assistente" class="float-image">
+    </button>
+
+    <!-- Janela do Chat -->
+    <div id="chatbox" class="chatbox hidden">
+        <div id="chat-header" class="chat-header">
+            <img src="../chatbot/50px2.png" alt="">
+            <span>MIA</span>
+            <button id="closeButton" class="close-button">&times;</button>
+        </div>
+        <div id="messages" class="messages"></div>
+        <div id="options" class="options"></div>
+    </div>
+
     <div class="scrollable-app">    
         <main class="main-content">
             <div class="background-bubbles">
@@ -369,4 +387,5 @@
         </footer>
     </div>
 </body>
+<script src="../chatbot/scripts.js"></script>
 </html>

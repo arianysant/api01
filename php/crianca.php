@@ -645,7 +645,7 @@ if (!isset($_SESSION['id_crianca'])) {
                 </div>
 
                 <div class="text-section">
-                <h1>Bem-vindo ao seu perfil, <?php echo $_SESSION['nome']; ?></h1> <!-- Teste se o ID da sessão está correto -->
+                <h1>Bem-vindo(a), <?php echo $_SESSION['nome']; ?></h1> <!-- Teste se o ID da sessão está correto -->
                     <p>Esta é a área dedicada às crianças. Aqui você pode interagir com jogos, rotinas e muito mais!</p>
                 </div>
 

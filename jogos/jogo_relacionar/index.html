@@ -9,17 +9,17 @@
 <body>
     <h1>Jogo de Relacionar</h1>
     
-    <!-- Tela inicial de seleção de modo -->
+
     <div id="start-screen">
         <h2>Escolha um modo para jogar:</h2>
         <div class="mode-buttons">
             <button id="animal-btn" class="mode-btn animal">Animais</button>
-            <button id="fruit-btn" class="mode-btn fruits">Frutas</button> <!-- Alterado para fruit-btn -->
-            <button id="object-btn" class="mode-btn objects">Objetos</button> <!-- Alterado para object-btn -->
+            <button id="fruit-btn" class="mode-btn fruits">Frutas</button> 
+            <button id="object-btn" class="mode-btn objects">Objetos</button> 
         </div>
     </div>
     
-    <!-- Contêineres para o jogo (inicialmente escondidos) -->
+
     <div id="game-container" class="hidden">
         <div class="container">
         <div class="main-container"> 
@@ -131,10 +131,13 @@
                 <img src="imagens/zebra.png" alt="Zebra">
             </div>
         </div>
-        <button id="proximoBtn">Próximo</button>
     </div>
     </div>
+    <div id="end-screen" class="hidden">
+        <h1>Parabéns! Você completou o jogo!</h1>
+        <button id="restart-btn">Voltar ao Início</button>
+    </div>    
 
-    <script src="../jogo_sentidos/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

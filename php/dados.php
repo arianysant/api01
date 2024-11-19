@@ -217,7 +217,7 @@
             </div>
 
             <div class="input-group">
-                <input type="email" name="email" placeholder="Email do responsável" required>
+                <input type="email" name="email" placeholder="Email da criança" required>
             </div>
 
              <div class="input-group">

@@ -107,7 +107,7 @@ if (!isset($_SESSION['id'])) {
                     <img src="../img/rotinap.png" alt="Imagem de pintura" class="img-nova">
                     <h1>Rotina</h1>
                     <p>Monte a rotina personalizada do dia para o seu pequeno!</p>
-                    <a href="rotinaP.html">
+                    <a href="rotinaP.php">
                         <button class="botao">Adicionar</button>
                     </a>
                 </div>

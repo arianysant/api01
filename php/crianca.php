@@ -662,7 +662,7 @@ if (!isset($_SESSION['id_crianca'])) {
                     <img src="../img/rotinaa.PNG" alt="imagem com relogio" class="img-nova">
                     <h1>Rotina</h1>
                     <p>Clique aqui e veja a rotina que seus pais deixaram para você!</p>
-                    <a href="rotinaC.html">
+                    <a href="rotinaC.php">
                         <button class="botao">Ver Rotina</button>
                     </a>
                 </div>

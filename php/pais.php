@@ -8,7 +8,7 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
-//echo "Bem-vindo, " . $_SESSION['nome'] . "!";
+echo "Bem-vindo, " . $_SESSION['nome'] . "!";
 ?>
 
 <!DOCTYPE html>

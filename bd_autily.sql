@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17/11/2024 às 20:32
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.1.25
+-- Tempo de geração: 21-Nov-2024 às 16:41
+-- Versão do servidor: 10.4.22-MariaDB
+-- versão do PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `crianca`
+-- Estrutura da tabela `crianca`
 --
 
 CREATE TABLE `crianca` (
@@ -36,10 +36,10 @@ CREATE TABLE `crianca` (
   `info` text NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `crianca`
+-- Extraindo dados da tabela `crianca`
 --
 
 INSERT INTO `crianca` (`id_crianca`, `nome`, `idade`, `nivel_de_suporte`, `responsavel_id`, `info`, `email`, `senha`) VALUES
@@ -51,41 +51,49 @@ INSERT INTO `crianca` (`id_crianca`, `nome`, `idade`, `nivel_de_suporte`, `respo
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cri_resp`
+-- Estrutura da tabela `cri_resp`
 --
 
 CREATE TABLE `cri_resp` (
   `fk_responsavel_id_resp` int(11) NOT NULL,
   `fk_crianca_id_crianca` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `jogam`
+-- Estrutura da tabela `jogam`
 --
 
 CREATE TABLE `jogam` (
   `fk_crianca_id_crianca` int(11) NOT NULL,
   `fk_jogos_id_jogo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `jogos`
+-- Estrutura da tabela `jogos`
 --
 
 CREATE TABLE `jogos` (
   `id_jogo` int(11) NOT NULL,
   `nome_jogo` varchar(100) DEFAULT NULL,
-  `pontuacao` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `objetivo_jogo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `jogos`
+--
+
+INSERT INTO `jogos` (`id_jogo`, `nome_jogo`, `objetivo_jogo`) VALUES
+(0, 'memoria', 'achar as peças'),
+(1, 'memoria', 'achar as peças');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `perfil`
+-- Estrutura da tabela `perfil`
 --
 
 CREATE TABLE `perfil` (
@@ -95,12 +103,31 @@ CREATE TABLE `perfil` (
   `email` varchar(255) DEFAULT NULL,
   `nivel_de_suporte` varchar(50) DEFAULT NULL,
   `info` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `responsavel`
+-- Estrutura da tabela `pontuacoes`
+--
+
+CREATE TABLE `pontuacoes` (
+  `id_jogo` int(11) NOT NULL,
+  `id_crianca` int(11) NOT NULL,
+  `pontuacao` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `pontuacoes`
+--
+
+INSERT INTO `pontuacoes` (`id_jogo`, `id_crianca`, `pontuacao`) VALUES
+(1, 12, 13);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `responsavel`
 --
 
 CREATE TABLE `responsavel` (
@@ -109,12 +136,12 @@ CREATE TABLE `responsavel` (
   `email` varchar(100) DEFAULT NULL,
   `senha` varchar(100) DEFAULT NULL,
   `fk_tipo_cod` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `rotina`
+-- Estrutura da tabela `rotina`
 --
 
 CREATE TABLE `rotina` (
@@ -122,33 +149,33 @@ CREATE TABLE `rotina` (
   `horario_final` time DEFAULT NULL,
   `tarefa` varchar(255) DEFAULT NULL,
   `fk_responsavel_id_resp` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `rotinacrianca`
+-- Estrutura da tabela `rotinacrianca`
 --
 
 CREATE TABLE `rotinacrianca` (
   `fk_crianca_id_crianca` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipo`
+-- Estrutura da tabela `tipo`
 --
 
 CREATE TABLE `tipo` (
   `cod` int(11) NOT NULL,
   `descr` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -157,10 +184,10 @@ CREATE TABLE `usuarios` (
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `fk_id_crianca` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `usuarios`
+-- Extraindo dados da tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `fk_id_crianca`) VALUES
@@ -173,72 +200,79 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `fk_id_crianca`) VALUES
 --
 
 --
--- Índices de tabela `crianca`
+-- Índices para tabela `crianca`
 --
 ALTER TABLE `crianca`
   ADD PRIMARY KEY (`id_crianca`);
 
 --
--- Índices de tabela `cri_resp`
+-- Índices para tabela `cri_resp`
 --
 ALTER TABLE `cri_resp`
   ADD PRIMARY KEY (`fk_responsavel_id_resp`,`fk_crianca_id_crianca`),
   ADD KEY `FK_cri_resp_2` (`fk_crianca_id_crianca`);
 
 --
--- Índices de tabela `jogam`
+-- Índices para tabela `jogam`
 --
 ALTER TABLE `jogam`
   ADD PRIMARY KEY (`fk_crianca_id_crianca`,`fk_jogos_id_jogo`),
   ADD KEY `FK_jogam_2` (`fk_jogos_id_jogo`);
 
 --
--- Índices de tabela `jogos`
+-- Índices para tabela `jogos`
 --
 ALTER TABLE `jogos`
   ADD PRIMARY KEY (`id_jogo`);
 
 --
--- Índices de tabela `perfil`
+-- Índices para tabela `perfil`
 --
 ALTER TABLE `perfil`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- Índices de tabela `responsavel`
+-- Índices para tabela `pontuacoes`
+--
+ALTER TABLE `pontuacoes`
+  ADD PRIMARY KEY (`id_jogo`,`id_crianca`),
+  ADD KEY `id_crianca` (`id_crianca`);
+
+--
+-- Índices para tabela `responsavel`
 --
 ALTER TABLE `responsavel`
   ADD PRIMARY KEY (`id_resp`),
   ADD KEY `FK_responsavel_2` (`fk_tipo_cod`);
 
 --
--- Índices de tabela `rotina`
+-- Índices para tabela `rotina`
 --
 ALTER TABLE `rotina`
   ADD PRIMARY KEY (`horario_inicio`,`fk_responsavel_id_resp`),
   ADD KEY `FK_rotina_1` (`fk_responsavel_id_resp`);
 
 --
--- Índices de tabela `rotinacrianca`
+-- Índices para tabela `rotinacrianca`
 --
 ALTER TABLE `rotinacrianca`
   ADD PRIMARY KEY (`fk_crianca_id_crianca`);
 
 --
--- Índices de tabela `tipo`
+-- Índices para tabela `tipo`
 --
 ALTER TABLE `tipo`
   ADD PRIMARY KEY (`cod`);
 
 --
--- Índices de tabela `usuarios`
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
@@ -254,43 +288,50 @@ ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `cri_resp`
+-- Limitadores para a tabela `cri_resp`
 --
 ALTER TABLE `cri_resp`
   ADD CONSTRAINT `FK_cri_resp_1` FOREIGN KEY (`fk_responsavel_id_resp`) REFERENCES `responsavel` (`id_resp`),
   ADD CONSTRAINT `FK_cri_resp_2` FOREIGN KEY (`fk_crianca_id_crianca`) REFERENCES `crianca` (`id_crianca`);
 
 --
--- Restrições para tabelas `jogam`
+-- Limitadores para a tabela `jogam`
 --
 ALTER TABLE `jogam`
   ADD CONSTRAINT `FK_jogam_1` FOREIGN KEY (`fk_crianca_id_crianca`) REFERENCES `crianca` (`id_crianca`),
   ADD CONSTRAINT `FK_jogam_2` FOREIGN KEY (`fk_jogos_id_jogo`) REFERENCES `jogos` (`id_jogo`);
 
 --
--- Restrições para tabelas `perfil`
+-- Limitadores para a tabela `perfil`
 --
 ALTER TABLE `perfil`
   ADD CONSTRAINT `perfil_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
 
 --
--- Restrições para tabelas `responsavel`
+-- Limitadores para a tabela `pontuacoes`
+--
+ALTER TABLE `pontuacoes`
+  ADD CONSTRAINT `pontuacoes_ibfk_1` FOREIGN KEY (`id_jogo`) REFERENCES `jogos` (`id_jogo`),
+  ADD CONSTRAINT `pontuacoes_ibfk_2` FOREIGN KEY (`id_crianca`) REFERENCES `crianca` (`id_crianca`);
+
+--
+-- Limitadores para a tabela `responsavel`
 --
 ALTER TABLE `responsavel`
   ADD CONSTRAINT `FK_responsavel_2` FOREIGN KEY (`fk_tipo_cod`) REFERENCES `tipo` (`cod`);
 
 --
--- Restrições para tabelas `rotina`
+-- Limitadores para a tabela `rotina`
 --
 ALTER TABLE `rotina`
   ADD CONSTRAINT `FK_rotina_1` FOREIGN KEY (`fk_responsavel_id_resp`) REFERENCES `responsavel` (`id_resp`);
 
 --
--- Restrições para tabelas `rotinacrianca`
+-- Limitadores para a tabela `rotinacrianca`
 --
 ALTER TABLE `rotinacrianca`
   ADD CONSTRAINT `FK_rotinacrianca_1` FOREIGN KEY (`fk_crianca_id_crianca`) REFERENCES `crianca` (`id_crianca`);

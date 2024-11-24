@@ -203,12 +203,13 @@
     <div class="container">
         <h1>Adicionar Rotina</h1>
         <form action="#" method="POST">
-            <table class="tabela">
+            <table class="tabela" id="tabela-rotinas">
                 <thead>
                     <tr>
                         <th>Data</th>
                         <th>Horário</th>
                         <th>Comentário</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -216,13 +217,42 @@
                         <td><input type="date" name="data" required></td>
                         <td><input type="time" name="horario" required></td>
                         <td><textarea name="comentario" placeholder="Escreva um comentário" required></textarea></td>
+                        <td><button type="button" onclick="deletarLinha(this)">Deletar</button></td>
                     </tr>
                 </tbody>
             </table>
-            <button type="submit">Adicionar</button>
+            <button type="button" onclick="adicionarLinha()">Adicionar Rotina</button>
+            <button type="submit">Salvar Rotinas</button>
         </form>
         <button class="btn-voltar" onclick="window.history.back()">Voltar</button>
     </div>
+
+    <script>
+        // Função para adicionar uma nova linha na tabela
+        function adicionarLinha() {
+            const tabela = document.getElementById('tabela-rotinas').getElementsByTagName('tbody')[0];
+            const novaLinha = tabela.insertRow();
+
+            // Adiciona as células com os campos de entrada
+            const celulaData = novaLinha.insertCell(0);
+            celulaData.innerHTML = '<input type="date" name="data" required>';
+
+            const celulaHorario = novaLinha.insertCell(1);
+            celulaHorario.innerHTML = '<input type="time" name="horario" required>';
+
+            const celulaComentario = novaLinha.insertCell(2);
+            celulaComentario.innerHTML = '<textarea name="comentario" placeholder="Escreva um comentário" required></textarea>';
+
+            const celulaAcoes = novaLinha.insertCell(3);
+            celulaAcoes.innerHTML = '<button type="button" onclick="deletarLinha(this)">Deletar</button>';
+        }
+
+        // Função para deletar a linha
+        function deletarLinha(button) {
+            const linha = button.closest('tr');
+            linha.remove();
+        }
+    </script>
 </body>
 
 </html>
